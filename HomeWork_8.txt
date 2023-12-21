@@ -1,0 +1,36 @@
+
+1.* Написать скрипт очистки директорий. На вход принимает путь к директории. 
+Если директория существует, то удаляет в ней все файлы с расширениями .bak, .tmp, .backup. 
+Если директории нет, то выводит ошибку.
+
+ilya@ilya:~$ tree
+.
+├── Geekbrains
+│   ├── f1.txt
+│   ├── f2.bak
+│   ├── f3.tmp
+│   └── f4.backup
+
+ilya@ilya:~$ nano Task4.sh
+ilya@ilya:~$ chmod u+x *
+ilya@ilya:~$ cat Task4.sh
+#!/bin/bash
+dir=$1
+if [ -e $dir ];then
+  find $dir -type f \( -name "*.bak"  -o  -name "*.tmp" -o -name "*.backup" \) -delete
+        echo "Все временные файлы и резервные копии удалены!"
+else
+  echo "Error"
+fi
+
+ilya@ilya:~$ ./Task4.sh
+Все временные файлы и резервные копии удалены!
+ilya@ilya:~$ tree
+.
+├── Geekbrains
+│   └── f1.txt
+
+ilya@ilya:~$ ilya@ilya:~$ ./Task4.sh home/ttttt
+Error.Нет такой директории
+
+
